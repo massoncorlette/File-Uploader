@@ -1,6 +1,7 @@
 # File-Uploader
 Personal storage service, introduction to Prisma using Express and authentication using Passport
 
+(make sure to update this upon completion)
 
 Run: npm install express express-session pg passport passport-local ejs -- installs all in one go for express session password encryption
 
