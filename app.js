@@ -15,6 +15,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/styles"));
 
 const indexRouter = require("./routes/index");
+const signupRouter = require("./routes/signup");
 
 app.use(express.urlencoded({ extended: false })); // so passport can parse form data
 
@@ -43,6 +44,8 @@ app.use(passport.session());  //enables persistent login sessions
 
 
 app.use("/", indexRouter);
+
+app.use("/home", homeRouter);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

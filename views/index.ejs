@@ -6,6 +6,17 @@
   <title>File Uploader</title>
 </head>
 <body>
+  <% if (locals.user) {%>
+    <%- include('home.ejs') %>
+  <% } else { %>
+    <h1>please log in</h1>
+    <% if (locals.errors) {%>
+      <ul>
+        <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+        <% }); %>
+      </ul>
+    <% } %>
   <form>
     <fieldset>
       <div id="formHeaderContainer">
@@ -22,5 +33,6 @@
       </div>
     </fieldset>
   </form>
+  <% } %>
 </body>
 </html>
