@@ -33,6 +33,7 @@ model Post {
   authorId  Int
 }
 
+// for extended user properties
 model Profile {
   id     Int     @id @default(autoincrement())
   bio    String?
@@ -43,7 +44,9 @@ model Profile {
 model User {
   id      Int      @id @default(autoincrement())
   email   String   @unique
-  name    String?
+  fname    String
+  lname    String
+  password String 
   posts   Post[]
   profile Profile?
 }

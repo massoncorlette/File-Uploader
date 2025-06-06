@@ -20,7 +20,7 @@ function validatePasswordInput() {
 
 function validateCreateUser() {
   return [
-    body("firstname")
+    body("fname")
       .trim()
       .notEmpty().withMessage("First name is required")
       .isAlpha("en-US", { ignore: " " })
@@ -30,7 +30,7 @@ function validateCreateUser() {
       .isLength({ min: 0, max: 24 })
       .withMessage(`User first name ${lengthErr}`)
       .bail(),
-    body("lastname")
+    body("lname")
       .trim()
       .notEmpty().withMessage("Last name is required")
       .bail()
@@ -40,7 +40,7 @@ function validateCreateUser() {
       .isLength({ min: 0, max: 24 })
       .withMessage(`User last name ${lengthErr}`)
       .bail(),
-    body("username")
+    body("email")
       .trim()
       .notEmpty().withMessage("Email is required")
       .bail()

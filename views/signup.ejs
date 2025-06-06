@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/header.ejs') %>
+<body>
+  <h1>Sign Up</h1>
+  <% if (locals.errors) {%>
+    <ul>
+      <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+  <form action="/sign-up" method="POST">
+    <label for="fname">First</label>
+    <input id="fname" name="fname" placeholder="firstname" type="text" />
+    <label for="lname">Last</label>
+    <input id="lname" name="lname" placeholder="lastname" type="text" />
+    <label for="email">Email</label>
+    <input id="email" name="email" placeholder="email" type="email" />
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" />
+    <label for="passwordconfirm">Confirm Password</label>
+    <input id="passwordconfirm" name="passwordconfirm" type="password" />
+    <button type="submit">Sign Up</button>
+  </form>
+</body>
+</html>

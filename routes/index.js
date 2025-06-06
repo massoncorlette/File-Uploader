@@ -1,3 +1,4 @@
+const authenticateUser = require("../config/passport");
 const { Router } = require("express");
 const { displayLogin } = require("../controllers/viewController");
 const { validateUser } = require("../controllers/validation");
