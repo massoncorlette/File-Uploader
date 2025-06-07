@@ -10,6 +10,7 @@ const { validationResult } = require("express-validator");
 async function handleCreateUser(req, res, next) {
   console.log("Form data:", req.body);
   const errors = validationResult(req);
+  console.log(errors);
   if (!errors.isEmpty()) {
     return res.status(400).render("signup", {
       errors: errors.array(),

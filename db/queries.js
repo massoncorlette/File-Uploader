@@ -1,14 +1,15 @@
-const pool = require("./pool");
-
+const { PrismaClient } = require('../generated/prisma/client');
+const prisma = new PrismaClient();
 
 async function checkEmail(value) {
 
-  const user = await pool.query(
-    "SELECT * FROM users WHERE email = $1",
-    [`${value}`],
-  );
+  const user = await prisma.user.findUnique({
+    where: {
+      email: value,
+    },
+  });
 
-  if (user.rows.length !== 0) {
+  if (user) {
     return true;
   } else {
     return false;
