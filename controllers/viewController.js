@@ -6,4 +6,13 @@ async function displayLogin(req, res, next) {
   res.render("index");
 }
 
-module.exports = { displayLogin };
+async function displayHome(req, res, next) {
+
+  res.render("home");
+
+}
+
+module.exports = { 
+  displayLogin,
+  displayHome
+};

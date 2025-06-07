@@ -3,13 +3,14 @@ const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../db/pool');
+const { checkUserByEmail, checkUser } = require('../db/queries');
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
-      const { rows } = await pool.query("SELECT * FROM users WHERE email = $1", [username]);
-      const user = rows[0];
+      const user = await checkUserByEmail(username);
 
+      console.log(user, "ahoy");
 
       if (!user) {
         return done(null, false, { message: "Incorrect email" });
@@ -31,13 +32,13 @@ passport.use(
 
 
 passport.serializeUser((user, done) => {
-  done(null, user.user_id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const { rows } = await pool.query("SELECT * FROM users WHERE user_id = $1", [id]);
-    const user = rows[0];
+    const user = await checkUser(id);
+  
 
 
     done(null, user);

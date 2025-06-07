@@ -9,7 +9,7 @@ indexRouter.get("/", async (req, res, next) => {
   return displayLogin(req, res, next);
 });
 
-indexRouter.post("/", validateUser(), authenticateUser);
+indexRouter.post("/", authenticateUser);
 
 
 module.exports = indexRouter;

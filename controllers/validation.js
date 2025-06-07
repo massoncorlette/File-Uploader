@@ -70,16 +70,6 @@ function validateUser() {
     body("username")
       .trim()
       .notEmpty().withMessage("Email is required")
-      .bail()
-      .isEmail().withMessage('Must be a valid email')
-      .bail()
-      .custom(async value => {
-        const user = await checkEmail(value);
-        if (!(user)) {
-          throw new Error('E-mail not found');
-        }
-      }),
-      ...validatePasswordInput(),
   ]
 };
 
