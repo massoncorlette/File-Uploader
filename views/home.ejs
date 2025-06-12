@@ -5,4 +5,16 @@
       LOG OUT
     </button>
   </form>
+  <button onclick="openModal()">Add a file</button>
+  <div id="addFileModal" style="display: none;">
+    <div>
+      <h2>Add A File</h2>
+
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <button>Upload</button>
+      </form>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
 </div>
