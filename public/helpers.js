@@ -1,9 +1,18 @@
 
+document.addEventListener("DOMContentLoaded", () => {
+  function handleModal() {
 
-export function openModal() {
-  document.getElementById("addFileModal").style.display = "block";
-};
+    const toggleModal = document.getElementById("addFileModal");
+    let addFileModal = document.getElementById("fileModal");
 
-export function closeModal() {
-  document.getElementById("closeModalBtn").style.display = "none";
-};
+    toggleModal.addEventListener("click", () => {
+      if (addFileModal.style.display == "none") {
+        addFileModal.style.display = "block";
+      } else {
+        addFileModal.style.display = "none";
+      }
+    });
+  };
+  handleModal();
+  
+});
