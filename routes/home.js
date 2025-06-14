@@ -16,9 +16,12 @@ homeRouter.get("/", (req, res, next) => {
 
 homeRouter.post('/upload', upload.single('uploaded_file'), function (req, res) {
 
+  console.log(uploadedFiles);
+
   uploadedFiles.push({
     originalname: req.file.originalname, 
     filename: req.file.filename,
+    file: req.file
   });
   res.redirect("/home");
 });
