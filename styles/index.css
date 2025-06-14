@@ -1,0 +1,11 @@
+* {
+  border: solid rgba(255, 66, 66, 0) 1px;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;;
+  min-height: 100vh;
+  background-color: rgb(41, 41, 41);
+  color: whitesmoke;
+}
+

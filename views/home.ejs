@@ -1,19 +1,33 @@
+<%- include('partials/header.ejs') %>
+
 <div>
   <h1>WELCOME BACK <%= currentUser.fname %></h1>
+
+  <h2>Uploaded Files:</h2>
+  <ul>
+    <% files.forEach(file => { %>
+      <li>
+        <a href="/<%= file.filename %>" download><%= file.originalname %></a>
+      </li>
+    <% }) %>
+  </ul>
   <form action="/log-out" method="POST">
     <button type="submit">
       LOG OUT
     </button>
   </form>
-  <button id="addFileModal">Add a file</button>
+  <button class="addFileModal">Add a file</button>
   <div id="fileModal"  style="display: none;">
     <div>
       <h2>Add A File</h2>
 
-      <form action="/upload" method="post" enctype="multipart/form-data">
-        <button>Upload</button>
+      <form action="/home/upload" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <input type="file" class="form-control-file" name="uploaded_file">
+          <button type="submit" id="uploadBtn">Upload</button>
+        </div>
       </form>
-      <button>Close</button>
+      <button class="addFileModal">Close</button>
     </div>
   </div>
 

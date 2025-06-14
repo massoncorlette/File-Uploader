@@ -3,6 +3,8 @@ Personal storage service, introduction to Prisma using Express and authenticatio
 
 (make sure to update this upon completion)
 
+Using Multer middleware for uploading data from a form: https://github.com/expressjs/multer 
+
 Run: npm install express express-session pg passport passport-local ejs -- installs all in one go for express session password encryption
 
 npm init -y

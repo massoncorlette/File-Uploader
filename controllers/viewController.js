@@ -6,9 +6,9 @@ async function displayLogin(req, res, next) {
   res.render("index");
 }
 
-async function displayHome(req, res, next) {
+async function displayHome(req, res, next, files) {
 
-  res.render("home");
+  res.render("home", {files:files});
 
 }
 
