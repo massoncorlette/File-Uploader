@@ -50,3 +50,17 @@ button:hover {
 #sidebarContainer {
   flex: 1;
 }
+
+/* tablet */
+@media (max-width: 62.5em) {
+  #mainContainer {
+    flex: 4;
+  }
+}
+
+/* mobile */
+@media (max-width: 45em) {
+  #homeContainer {
+    flex-direction: column-reverse;
+  }
+}
