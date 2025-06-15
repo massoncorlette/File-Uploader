@@ -1,35 +1,38 @@
 <%- include('partials/header.ejs') %>
 
-<div>
-  <h1>WELCOME BACK <%= currentUser.fname %></h1>
+<%- include('partials/navbar.ejs') %>
 
-  <h2>Uploaded Files:</h2>
-  <ul>
-    <% files.forEach(file => { %>
-      <li>
-        <a href="/<%= file.filename %>" download><%= file.originalname %></a>
-      </li>
-    <% }) %>
-  </ul>
-  <form action="/log-out" method="POST">
-    <button type="submit">
-      LOG OUT
-    </button>
-  </form>
-  <button class="addFileModal">Add a file</button>
-  <div id="fileModal"  style="display: none;">
-    <div>
-      <h2>Add A File</h2>
 
-      <form action="/home/upload" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <input type="file" class="form-control-file" name="uploaded_file">
-          <button type="submit" id="uploadBtn">Upload</button>
-        </div>
-      </form>
-      <button class="addFileModal">Close</button>
-    </div>
+<div id="homeContainer">
+  
+  <%- include('partials/sidebar.ejs') %>
+
+  <div id="mainContainer">
+    <h1>WELCOME BACK <%= currentUser.fname %></h1>
+
+    <h2>Uploaded Files:</h2>
+    <ul>
+      <% files.forEach(file => { %>
+        <li>
+          <a href="/<%= file.filename %>" download><%= file.originalname %></a>
+        </li>
+      <% }) %>
+    </ul>
+  
+    <button class="addFileModal">Add a file</button>
+    <div id="fileModal"  style="display: none;">
+      <div>
+        <h2>Add A File</h2>
+  
+        <form action="/home/upload" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="file" class="form-control-file" name="uploaded_file">
+            <button type="submit" id="uploadBtn">Upload</button>
+          </div>
+        </form>
+        <button class="addFileModal">Close</button>
+      </div>
+    </div>  
   </div>
-
 </div>
 <script src="/helpers.js"></script>

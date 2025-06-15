@@ -5,33 +5,36 @@
   <% if (locals.user) {%>
     <%- include('home.ejs') %>
   <% } else { %>
-    <h1>please log in</h1>
-    <% if (locals.errors) {%>
-      <ul>
-        <% errors.forEach(function(error) { %>
-          <li><%= error.msg %></li>
-        <% }); %>
-      </ul>
+    <div id="loginContainer">
+
+      <h1>please log in</h1>
+      <% if (locals.errors) {%>
+        <ul>
+          <% errors.forEach(function(error) { %>
+            <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+      <% } %>
+    <form action="/" method="POST">
+      <fieldset>
+        <div id="formHeaderContainer">
+          <legend>Login</legend>
+        </div>
+        <div class="loginRow">      
+          <input id="username" type="text"  name="username" placeholder="Enter Email"><br>
+        </div>
+        <div class="loginRow">      
+          <input id="password" type="password"  name="password" placeholder="Enter Password"><br>
+        </div>
+        <div id="submitLogin">
+          <button type="submit">Login</button>
+        </div>
+      </fieldset>
+    </form>
+    <a href="/sign-up"> 
+      <button> Sign Up !</button>
+    </a>
     <% } %>
-  <form action="/" method="POST">
-    <fieldset>
-      <div id="formHeaderContainer">
-        <legend>Login</legend>
-      </div>
-      <div class="loginRow">      
-        <input id="username" type="text"  name="username" placeholder="Enter Email"><br>
-      </div>
-      <div class="loginRow">      
-        <input id="password" type="password"  name="password" placeholder="Enter Password"><br>
-      </div>
-      <div id="submitLogin">
-        <button type="submit">Login</button>
-      </div>
-    </fieldset>
-  </form>
-  <a href="/sign-up"> 
-    <button> Sign Up !</button>
-  </a>
-  <% } %>
+  </div>
 </body>
 </html>

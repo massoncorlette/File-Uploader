@@ -1,5 +1,5 @@
 * {
-  border: solid rgba(255, 66, 66, 0) 1px;
+  border: solid rgb(255, 66, 66) 1px;
 }
 
 body {
@@ -9,3 +9,44 @@ body {
   color: whitesmoke;
 }
 
+button {
+  background-color: transparent;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#navBarContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+#logoutBtnContainer {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logoutImg {
+  width:32px;
+  height:32px;
+}
+
+#logoutImg:hover {
+  scale: 1.1;
+}
+
+#homeContainer {
+  min-height: 100%;
+  display: flex;
+}
+
+#mainContainer {
+  flex: 8;
+}
+
+#sidebarContainer {
+  flex: 1;
+}
