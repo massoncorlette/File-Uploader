@@ -4,7 +4,7 @@
 
 
 <div id="homeContainer">
-  
+
   <%- include('partials/sidebar.ejs') %>
 
   <div id="mainContainer">
@@ -19,15 +19,42 @@
       <% }) %>
     </ul>
   
-    <button class="addFileModal">Add a file</button>
-    <div id="fileModal"  style="display: none;">
+    <div id="fileModal" class="homeModal" style="display: none;">
       <div>
         <h2>Add A File</h2>
   
         <form action="/home/upload" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <input type="file" class="form-control-file" name="uploaded_file">
-            <button type="submit" id="uploadBtn">Upload</button>
+            <button type="submit" >Upload</button>
+          </div>
+        </form>
+        <button class="addFileModal">Close</button>
+      </div>
+    </div>
+    
+    <div id="folderModal" class="homeModal"  style="display: none;">
+      <div>
+        <h2>Add A Folder</h2>
+  
+        <form action="/home/upload" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="file" class="form-control-file" name="uploaded_file">
+            <button type="submit" >Create</button>
+          </div>
+        </form>
+        <button class="addFileModal">Close</button>
+      </div>
+    </div>  
+
+    <div id="deleteModal" class="homeModal" style="display: none;">
+      <div>
+        <h2>Delete Files</h2>
+  
+        <form action="/home/upload" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="file" class="form-control-file" name="uploaded_file">
+            <button type="submit">Delete</button>
           </div>
         </form>
         <button class="addFileModal">Close</button>
