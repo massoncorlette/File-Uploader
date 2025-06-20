@@ -36,5 +36,30 @@ async function handleCreateUser(req, res, next) {
   }
 };
 
+async function handleCreateFolder(req, res, next) {
 
-module.exports = { handleCreateUser };
+  const errors = validationResult(req);
+  console.log(errors);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("signup", {
+      errors: errors.array(),
+    });
+  }
+
+  try {
+
+    await prisma.folders.create({
+      data: {
+        name: req.body.foldername
+      }
+   });
+  res.redirect("home");
+    
+  } catch (error) {
+    console.error(error);
+    next(error);    
+  }
+};
+
+
+module.exports = { handleCreateUser, handleCreateFolder };

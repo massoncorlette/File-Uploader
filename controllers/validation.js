@@ -3,7 +3,7 @@ const { checkEmail } = require("../db/queries");
 
 
 const alphaErr = "must only contain letters.";
-const lengthErr = "must be between 5 and 24 characters.";
+const lengthErr = "must be under 24 characters.";
 
 function validatePasswordInput() {
   return [
@@ -73,8 +73,22 @@ function validateUser() {
   ]
 };
 
+function validateCreateFolder() {
+
+  return [
+
+    body("foldername")
+      .trim()
+      .notEmpty().withMessage("Can't be empty")
+      .bail()
+      .isLength({ min: 0, max: 24 })
+      .withMessage(`Folder name ${lengthErr}`)
+  ]
+}
+
 
 module.exports = {
    validateCreateUser,
-   validateUser
+   validateUser,
+   validateCreateFolder
 }

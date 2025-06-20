@@ -22,16 +22,25 @@ model Session {
   expiresAt   DateTime
 }
 
-model Post {
+model Folders {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
+  name      String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  files Files[]
+}
+
+model Files {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  cloudUrl  String
+  folder    Folders  @relation(fields: [folderID], references: [id])
+  folderID  Int
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
 }
+
 
 // for extended user properties
 model Profile {
@@ -47,6 +56,7 @@ model User {
   fname    String
   lname    String
   password String 
-  posts   Post[]
+  files   Files[]
+  folders Folders[]
   profile Profile?
 }
