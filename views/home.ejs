@@ -10,7 +10,9 @@
   <div id="mainContainer">
     <h1>WELCOME BACK <%= currentUser.fname %></h1>
 
-    <h2>Uploaded Files:</h2>
+    <h3>Folder Storages: </h3>
+
+    <h2>All Uploaded Files:</h2>
     <ul>
       <% files.forEach(file => { %>
         <li>
@@ -26,7 +28,7 @@
         <form action="/home/upload" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <input type="file" class="form-control-file" name="uploaded_file">
-            <button type="submit" >Upload</button>
+            <input type="submit" value="Upload" class="btn btn-default">
           </div>
         </form>
         <button class="addFileModal">Close</button>
