@@ -17,25 +17,17 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage });
 
-
-let uploadedFiles = [];
-
 const homeRouter = Router();
 
 homeRouter.get("/", (req, res, next) => {
 
-  return displayHome(req, res, next, uploadedFiles);
+  return displayHome(req, res, next);
 });
 
 homeRouter.post('/upload', upload.single('uploaded_file'), function (req, res) {
 
-  console.log(req.file, req.body)
+  console.log(req.file);
 
-  uploadedFiles.push({
-    originalname: req.file.originalname, 
-    filename: req.file.filename,
-    file: req.file
-  });
   res.redirect("/home");
 });
 

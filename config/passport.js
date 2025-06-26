@@ -10,8 +10,6 @@ passport.use(
     try {
       const user = await checkUserByEmail(username);
 
-      console.log(user, "ahoy");
-
       if (!user) {
         return done(null, false, { message: "Incorrect email" });
       }
