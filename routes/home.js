@@ -1,7 +1,7 @@
 const express = require("express");
 const { Router } = require("express");
 const { displayHome } = require("../controllers/viewController");
-const { handleCreateFolder } = require("../controllers/dataController/createController");
+const { handleCreateFolder, handleUploadFile } = require("../controllers/dataController/createController");
 const { validateCreateFolder } = require("../controllers/validation");
 
 const multer  = require('multer');
@@ -24,12 +24,7 @@ homeRouter.get("/", (req, res, next) => {
   return displayHome(req, res, next);
 });
 
-homeRouter.post('/upload', upload.single('uploaded_file'), function (req, res) {
-
-  console.log(req.file);
-
-  res.redirect("/home");
-});
+homeRouter.post('/upload', upload.single('uploaded_file'), handleUploadFile);
 
 
 homeRouter.post('/create', validateCreateFolder(), handleCreateFolder);

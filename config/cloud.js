@@ -19,11 +19,13 @@ async function getCloudinaryObj(path) {
       },
       {
         width:1200,
-        height:1200
+        height:1200,
+        crop: 'fill',
+        gravity: 'auto'
       }
     ]
   })
-  console.log(url, "cloudinary url obj");
+  return url;
 };
 
 module.exports = { getCloudinaryObj };

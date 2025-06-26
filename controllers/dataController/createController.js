@@ -6,6 +6,23 @@ const bcrypt = require("bcryptjs");
 
 const { validationResult } = require("express-validator");
 
+const { getCloudinaryObj } = require('../../config/cloud');
+
+
+async function handleUploadFile(req, res, next) {
+
+  filePath = req.file.path;
+
+  try {
+    const cloudImageUrl = getCloudinaryObj(filePath);
+
+    res.redirect("/home");
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+
+}
 
 async function handleCreateUser(req, res, next) {
   console.log("Form data:", req.body);
@@ -36,6 +53,7 @@ async function handleCreateUser(req, res, next) {
   }
 };
 
+
 async function handleCreateFolder(req, res, next) {
 
   const errors = validationResult(req);
@@ -62,4 +80,4 @@ async function handleCreateFolder(req, res, next) {
 };
 
 
-module.exports = { handleCreateUser, handleCreateFolder };
+module.exports = { handleCreateUser, handleUploadFile, handleCreateFolder };
