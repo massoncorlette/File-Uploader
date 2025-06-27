@@ -11,10 +11,25 @@ const { getCloudinaryObj } = require('../../config/cloud');
 
 async function handleUploadFile(req, res, next) {
 
+  console.log(req.file);
+
   filePath = req.file.path;
 
   try {
     const cloudImageUrl = getCloudinaryObj(filePath);
+
+    const date = new Date().toISOString().split('T')[0]; 
+
+    await prisma.files.create({
+      data: {
+        createAt: date,
+        cloudUrl: cloudImageUrl.url,
+        fileName: cloudImageUrl.original_filename,
+        // folederID: req.params,
+        // authorId: req.userID
+      }
+   });
+
 
     res.redirect("/home");
   } catch (error) {

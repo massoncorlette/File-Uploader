@@ -11,8 +11,8 @@ const storage = multer.diskStorage({
     cb(null, './uploads')
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.fieldname + '-' + uniqueSuffix)
+    const date = new Date().toISOString().split('T')[0]; // use for cloud obj created_at property
+    cb(null, file.fieldname + '-' + date);
   }
 })
 const upload = multer({ storage: storage });
