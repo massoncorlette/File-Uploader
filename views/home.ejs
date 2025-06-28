@@ -35,12 +35,10 @@
       <div>
         <h2>Add A Folder</h2>
   
-        <form action="/home/create" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label>Add a Folder Name</label>
-            <input  name="foldername" />
-            <button type="submit" >Create</button>
-          </div>
+        <form action="/home/create" method="post">
+          <label>Add a Folder Name</label>
+          <input  name="foldername" type="text"/>
+          <button type="submit" >Create</button>
         </form>
         <button class="addFileModal">Close</button>
       </div>
@@ -53,8 +51,8 @@
         <form action="/home/delete" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label>Delete all Files?</label>
-            <button type="submit">Delete</button>
           </div>
+          <button type="submit">Delete</button>
         </form>
         <button class="addFileModal">Close</button>
       </div>

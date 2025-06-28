@@ -8,10 +8,14 @@ const { validationResult } = require("express-validator");
 
 const { getCloudinaryObj } = require('../../config/cloud');
 
+const { bytesToMegabytes } = require('../../utils');
+
 
 async function handleUploadFile(req, res, next) {
 
   console.log(req.file);
+
+  console.log(req.user);
 
   filePath = req.file.path;
 
@@ -19,14 +23,16 @@ async function handleUploadFile(req, res, next) {
     const cloudImageUrl = getCloudinaryObj(filePath);
 
     const date = new Date().toISOString().split('T')[0]; 
+    const byteSize = bytesToMegabytes(cloudImageUrl.size);
 
     await prisma.files.create({
       data: {
-        createAt: date,
+        createdAt: date,
         cloudUrl: cloudImageUrl.url,
         fileName: cloudImageUrl.original_filename,
+        size: byteSize,
         // folederID: req.params,
-        // authorId: req.userID
+        authorId: req.user.id
       }
    });
 
@@ -83,10 +89,11 @@ async function handleCreateFolder(req, res, next) {
 
     await prisma.folders.create({
       data: {
-        name: req.body.foldername
+        name: req.body.foldername,
+        authorId: req.user.id
       }
    });
-  res.redirect("home");
+  res.redirect("/home");
     
   } catch (error) {
     console.error(error);

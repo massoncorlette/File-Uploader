@@ -44,17 +44,16 @@ app.use(passport.initialize());  //initializes Passport
 app.use(passport.session());  //enables persistent login sessions
 
 app.use("/", indexRouter);
+app.use("/sign-up", signupRouter);
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 });
 
-app.use("/sign-up", signupRouter);
 app.use("/home", homeRouter);
 
 app.post("/log-out", (req, res, next) => {
-  console.log("log out");
   req.logout((err) => {
     if (err) {
       return next(err);
