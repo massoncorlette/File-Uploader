@@ -1,7 +1,6 @@
 // const db = require("../db/queries");
+const { prisma } = require('../viewController');
 
-const { PrismaClient } = require('../../generated/prisma/client');
-const prisma = new PrismaClient();
 const bcrypt = require("bcryptjs");
 
 const { validationResult } = require("express-validator");
@@ -32,7 +31,7 @@ async function handleUploadFile(req, res, next) {
         fileName: cloudImageUrl.original_filename,
         size: byteSize,
         // folederID: req.params,
-        authorId: req.user.id
+      //  authorId: req.user.id
       }
    });
 
