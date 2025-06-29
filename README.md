@@ -1,6 +1,15 @@
 # File-Uploader
 Personal storage service, introduction to Prisma using Express and authentication using Passport
 
+6/29 notes:
+ - Create a new view for folder data to display files
+ - create a new dynamic path for folder ID to pass into req.params
+ - take req.params.folderID for view to Read files
+ - CRUD Folders
+ - add fetch function in ./utils to use for handleDownload
+    *Cloudify obj has the properties we may need, refer to cloudify Docs
+    
+
 (make sure to update this upon completion)
 
 Using Multer middleware for uploading data from a form: https://github.com/expressjs/multer 
