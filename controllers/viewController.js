@@ -46,8 +46,6 @@ async function displayHome(req, res, next) {
   const files = await prisma.files.findMany();
   const folders = await prisma.folders.findMany();
 
-  console.log(files);
-
   res.render("home", {files:files, folders:folders});
 
 }

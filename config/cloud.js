@@ -10,7 +10,8 @@ cloudinary.config({
 
 async function getCloudinaryObj(path) {
   const results = await cloudinary.uploader.upload(path);
-  console.log(results);
+  const fileName = results.original_filename;
+  const size = results.bytes
   const url = cloudinary.url(results.public_id, {
     transformation: [
       {
@@ -25,7 +26,11 @@ async function getCloudinaryObj(path) {
       }
     ]
   })
-  return url;
+  return {
+    url,
+    fileName,
+    size
+  };
 };
 
 module.exports = { getCloudinaryObj };
