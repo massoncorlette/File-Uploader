@@ -13,9 +13,36 @@
     <h3>Folder Storages: </h3>
 
     <h2>All Uploaded Files:</h2>
-    <ul>
       <% console.log(files) %>
-    </ul>
+
+      <% folders.forEach((folder) => { %>
+    
+        <div class="filefoldersContainer">
+          <a>
+            <div class="fileCells">
+              <div>
+                <%= folder.name %>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% }) %>
+
+      <% files.forEach((file) => { %>
+    
+        <div class="filefoldersContainer">
+          <a>
+            <div class="fileCells">
+              <div>
+                <%= file.fileName %>
+              </div>
+              <div>
+                <%= file.createdAt%>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% }) %>
   
     <div id="fileModal" class="homeModal" style="display: none;">
       <div>

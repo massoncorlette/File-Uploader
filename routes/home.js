@@ -14,7 +14,8 @@ const storage = multer.diskStorage({
     const date = new Date().toISOString().split('T')[0]; // use for cloud obj created_at property
     cb(null, file.fieldname + '-' + date);
   }
-})
+});
+
 const upload = multer({ storage: storage });
 
 const homeRouter = Router();
