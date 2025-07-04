@@ -9,7 +9,7 @@
 
   <div id="mainContainer">
     <h1>WELCOME BACK <%= currentUser.fname %></h1>
-    <% if (folders) { %>
+    <% if (folders !== null) { %>
 
     
       <h3>Folder Storages: </h3>
@@ -25,11 +25,27 @@
           </a>
         </div>
       <% }) %>
+      <div id="folderModal" class="homeModal"  style="display: none;">
+        <div>
+          <h2>Add A Folder</h2>
+    
+          <form action="/home/create" method="post">
+            <label>Add a Folder Name</label>
+            <input  name="foldername" type="text"/>
+            <button type="submit" >Create</button>
+          </form>
+          <button class="addFileModal">Close</button>
+        </div>
+      </div>  
     <% } %>
+    <% if (req.params.folderID == null) { %>
     <h2>All Uploaded Files:</h2>
-      <% console.log(files) %>
 
+    <% } else { %>
+    <h2><%= folderInfo.name %> Uploaded Files:</h2>
+    <% } %>
 
+    <% if (files !== null) { %> 
 
       <% files.forEach((file) => { %>
     
@@ -46,7 +62,7 @@
           </a>
         </div>
       <% }) %>
-  
+    <% } %>
     <div id="fileModal" class="homeModal" style="display: none;">
       <div>
         <h2>Add A File</h2>
@@ -60,19 +76,6 @@
         <button class="addFileModal">Close</button>
       </div>
     </div>
-    
-    <div id="folderModal" class="homeModal"  style="display: none;">
-      <div>
-        <h2>Add A Folder</h2>
-  
-        <form action="/home/create" method="post">
-          <label>Add a Folder Name</label>
-          <input  name="foldername" type="text"/>
-          <button type="submit" >Create</button>
-        </form>
-        <button class="addFileModal">Close</button>
-      </div>
-    </div>  
 
     <div id="deleteModal" class="homeModal" style="display: none;">
       <div>

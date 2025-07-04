@@ -36,6 +36,23 @@ async function getFilesByFolder(id) {
   }
 };
 
+async function getFolderInfo(id) {
+
+  try {
+    const folder = await prisma.folders.findUnique({
+      where: {
+        id: id,
+      },
+   });
+
+   return folder;
+  } catch (error) {
+    console.error(error);
+   // next(error);
+  }
+};
+
+
 async function displayLogin(req, res, next) {
 
   res.render("index");
@@ -46,18 +63,19 @@ async function displayHome(req, res, next) {
   const files = await prisma.files.findMany();
   const folders = await prisma.folders.findMany();
 
-  res.render("home", {files:files, folders:folders});
+  res.render("home", {files:files, folders:folders, req:req});
 
 };
 
 async function displayFolderView(req, res, next) {
 
-  const folderID = req.params.folderID;
+  const folderID = parseInt(req.params.folderID);
   const folders = null;
 
   const files = await getFilesByFolder(folderID);
+  const folderInfo = await getFolderInfo(folderID);
 
-  res.render("home", {files:files, folders:folders});
+  res.render("home", {files:files, folders:folders, req:req, folderInfo:folderInfo});
 };
 
 

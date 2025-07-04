@@ -12,15 +12,18 @@ const { bytesToMegabytes } = require('../../utils');
 
 async function handleUploadFile(req, res, next) {
 
-  console.log(req.user);
 
-  filePath = req.file.path;
 
   try {
     const cloudFileObj = await getCloudinaryObj(filePath);
 
     const date = new Date().toISOString().split('T')[0]; 
     const byteSize = bytesToMegabytes(cloudFileObj.size);
+    let folderID = null;
+
+    if (req.params.folderID) {
+      folderID = parseInt(req.params.folderID);
+    }
 
     await prisma.files.create({
       data: {
@@ -28,7 +31,7 @@ async function handleUploadFile(req, res, next) {
         cloudUrl: String(cloudFileObj),
         fileName: cloudFileObj.fileName,
         size: byteSize,
-        folderID: null,
+        folderID: folderID,
         authorId: req.user.id
       }
    });
