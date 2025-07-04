@@ -62,6 +62,12 @@ app.post("/log-out", (req, res, next) => {
   });
 });
 
+app.get("/filedetails/:fileID", (req, res, next) => {
+  
+  return displayFileView(req, res, next);
+
+});
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

@@ -78,10 +78,19 @@ async function displayFolderView(req, res, next) {
   res.render("home", {files:files, folders:folders, req:req, folderInfo:folderInfo});
 };
 
+async function displayFileView(req, res, next) {
+
+  const fileID = parseInt(req.params.fileID);
+  const file = getFileDetails(fileID);
+
+  res.render("fileView", {file:file});
+};
+
 
 module.exports = { 
   prisma,
   displayLogin,
   displayHome,
-  displayFolderView
+  displayFolderView,
+  displayFileView
 };

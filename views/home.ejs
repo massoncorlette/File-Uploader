@@ -4,12 +4,12 @@
 
 
 <div id="homeContainer">
-
+  
   <%- include('partials/sidebar.ejs') %>
 
   <div id="mainContainer">
-    <h1>WELCOME BACK <%= currentUser.fname %></h1>
     <% if (folders !== null) { %>
+      <h1>WELCOME BACK <%= currentUser.fname %></h1>
 
     
       <h3>Folder Storages: </h3>
@@ -51,7 +51,7 @@
     
         <div class="filefoldersContainer">
           <a>
-            <div class="fileCells">
+            <div class="fileCells" id= "<%= file.id %>" >
               <div>
                 <%= file.fileName %>
               </div>
