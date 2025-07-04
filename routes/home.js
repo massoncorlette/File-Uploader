@@ -1,6 +1,6 @@
 const express = require("express");
 const { Router } = require("express");
-const { displayHome } = require("../controllers/viewController");
+const { displayHome, displayFolderView } = require("../controllers/viewController");
 const { handleCreateFolder, handleUploadFile } = require("../controllers/dataController/createController");
 const { validateCreateFolder } = require("../controllers/validation");
 
@@ -29,6 +29,11 @@ homeRouter.post('/upload', upload.single('uploaded_file'), handleUploadFile);
 
 
 homeRouter.post('/create', validateCreateFolder(), handleCreateFolder);
+
+homeRouter.get("/folder/:folderID", (req, res, next) => {
+
+  return displayFolderView(req, res, next);
+});
 
 
 module.exports = homeRouter;

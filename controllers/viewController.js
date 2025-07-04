@@ -16,7 +16,7 @@ async function getFileDetails(id) {
 
   } catch (error) {
     console.error(error);
-    next(error);
+   // next(error);
   }
 };
 
@@ -32,14 +32,14 @@ async function getFilesByFolder(id) {
    return files;
   } catch (error) {
     console.error(error);
-    next(error);
+   // next(error);
   }
 };
 
 async function displayLogin(req, res, next) {
 
   res.render("index");
-}
+};
 
 async function displayHome(req, res, next) {
 
@@ -48,11 +48,22 @@ async function displayHome(req, res, next) {
 
   res.render("home", {files:files, folders:folders});
 
-}
+};
+
+async function displayFolderView(req, res, next) {
+
+  const folderID = req.params.folderID;
+  const folders = null;
+
+  const files = await getFilesByFolder(folderID);
+
+  res.render("home", {files:files, folders:folders});
+};
 
 
 module.exports = { 
   prisma,
   displayLogin,
-  displayHome
+  displayHome,
+  displayFolderView
 };

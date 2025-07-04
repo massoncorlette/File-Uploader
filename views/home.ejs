@@ -9,16 +9,14 @@
 
   <div id="mainContainer">
     <h1>WELCOME BACK <%= currentUser.fname %></h1>
+    <% if (folders) { %>
 
-    <h3>Folder Storages: </h3>
-
-    <h2>All Uploaded Files:</h2>
-      <% console.log(files) %>
-
-      <% folders.forEach((folder) => { %>
     
+      <h3>Folder Storages: </h3>
+      <% folders.forEach((folder) => { %>
+      
         <div class="filefoldersContainer">
-          <a>
+          <a href="/home/folder/<%= folder.id %>">
             <div class="fileCells">
               <div>
                 <%= folder.name %>
@@ -27,6 +25,11 @@
           </a>
         </div>
       <% }) %>
+    <% } %>
+    <h2>All Uploaded Files:</h2>
+      <% console.log(files) %>
+
+
 
       <% files.forEach((file) => { %>
     
