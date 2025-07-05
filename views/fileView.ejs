@@ -9,7 +9,29 @@
 
   <div id="mainContainerAlt">
 
-    
+  <% console.log(file) %>
+    <div>
+      <div>
+        <%= file.fileName %>
+      </div>
+      <% if (foldername !== null) { %>
+        <div>
+          Stored In <%= foldername %>
+        </div>
+      <% } else { %> 
+        <div>
+          Not stored in Folder
+        </div>
+      <% } %>
+    </div>
+
+    <div>
+      <%= file.createdAt %>
+    </div>
+    <div>
+      <%= file.fileName %>
+    </div>
+
   </div>
 
 

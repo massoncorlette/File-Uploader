@@ -25,7 +25,7 @@ async function getFilesByFolder(id) {
   try {
     const files = await prisma.files.findMany({
       where: {
-        id: id,
+        folderID: id,
       },
    });
 
@@ -81,9 +81,15 @@ async function displayFolderView(req, res, next) {
 async function displayFileView(req, res, next) {
 
   const fileID = parseInt(req.params.fileID);
-  const file = getFileDetails(fileID);
+  const file = await getFileDetails(fileID);
+  const foldername = null;
 
-  res.render("fileView", {file:file});
+  if (file.folderID !== null) {
+    const folder = await getFolderInfo(file.folderID); 
+    foldername = folder.name;
+  };
+
+  res.render("fileView", {file:file, req:req, foldername:foldername});
 };
 
 

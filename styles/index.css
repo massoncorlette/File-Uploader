@@ -17,6 +17,11 @@ button:hover {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+  color: rgb(22, 181, 255);
+}
+
 #navBarContainer {
   display: flex;
   justify-content: space-around;
@@ -47,6 +52,11 @@ button:hover {
   flex: 8;
 }
 
+#mainContainerAlt {
+  flex: 8;
+  display: flex;
+}
+
 #sidebarContainer {
   flex: 1;
   display: flex;
@@ -57,7 +67,7 @@ button:hover {
 
 /* tablet */
 @media (max-width: 62.5em) {
-  #mainContainer {
+  #mainContainer, #mainContainerAlt {
     flex: 4;
   }
 }

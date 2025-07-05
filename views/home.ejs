@@ -4,12 +4,13 @@
 
 
 <div id="homeContainer">
-  
+
   <%- include('partials/sidebar.ejs') %>
 
   <div id="mainContainer">
+    <h1>WELCOME BACK <%= currentUser.fname %></h1>
+
     <% if (folders !== null) { %>
-      <h1>WELCOME BACK <%= currentUser.fname %></h1>
 
     
       <h3>Folder Storages: </h3>
@@ -42,7 +43,7 @@
     <h2>All Uploaded Files:</h2>
 
     <% } else { %>
-    <h2><%= folderInfo.name %> Uploaded Files:</h2>
+    <h2> <i> <%= folderInfo.name %> </i> Uploaded Files</h2>
     <% } %>
 
     <% if (files !== null) { %> 
@@ -50,8 +51,8 @@
       <% files.forEach((file) => { %>
     
         <div class="filefoldersContainer">
-          <a>
-            <div class="fileCells" id= "<%= file.id %>" >
+          <a href="/filedetails/<%= file.id %>">
+            <div class="fileCells" >
               <div>
                 <%= file.fileName %>
               </div>
@@ -65,9 +66,19 @@
     <% } %>
     <div id="fileModal" class="homeModal" style="display: none;">
       <div>
-        <h2>Add A File</h2>
-  
-        <form action="/home/upload" method="post" enctype="multipart/form-data">
+        <% if (req.params.folderID == null) { %>
+          <h2>Add a File</h2>
+      
+          <% } else { %>
+          <h2>Add a File to <i> <%= folderInfo.name %> </i></h2>
+          <% } %>
+
+          <% if (req.params.folderID == null) { %>
+              <form action="/home/upload" method="post" enctype="multipart/form-data">        
+            <% } else { %>
+              <form action="/home/upload/<%=req.params.folderID%>" method="post" enctype="multipart/form-data">
+            <% } %>
+
           <div class="form-group">
             <input type="file" class="form-control-file" name="uploaded_file">
             <input type="submit" value="Upload" class="btn btn-default">

@@ -25,10 +25,11 @@ homeRouter.get("/", (req, res, next) => {
   return displayHome(req, res, next);
 });
 
+homeRouter.post('/create', validateCreateFolder(), handleCreateFolder);
+
 homeRouter.post('/upload', upload.single('uploaded_file'), handleUploadFile);
 
-
-homeRouter.post('/create', validateCreateFolder(), handleCreateFolder);
+homeRouter.post('/upload/:folderID', upload.single('uploaded_file'), handleUploadFile);
 
 homeRouter.get("/folder/:folderID", (req, res, next) => {
 

@@ -12,7 +12,7 @@ const { bytesToMegabytes } = require('../../utils');
 
 async function handleUploadFile(req, res, next) {
 
-
+  const filePath = req.file.path;
 
   try {
     const cloudFileObj = await getCloudinaryObj(filePath);

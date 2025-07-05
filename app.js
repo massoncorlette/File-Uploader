@@ -62,6 +62,8 @@ app.post("/log-out", (req, res, next) => {
   });
 });
 
+const { displayFileView } = require('./controllers/viewController');
+
 app.get("/filedetails/:fileID", (req, res, next) => {
   
   return displayFileView(req, res, next);
