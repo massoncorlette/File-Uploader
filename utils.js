@@ -1,4 +1,20 @@
 
+// return Promise object
+async function retrieveImage(url) {
+  
+  try {
+    const image = await fetch(url, { mode: 'cors' });
+    if (!image.ok) {
+      throw new Error(`Response status: ${image.status}`);
+    }
+    console.log(image);
+    return image;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 function bytesToMegabytes(bytes) {
 
   console.log(bytes);
@@ -7,4 +23,5 @@ function bytesToMegabytes(bytes) {
   return megabytes;
 }
 
-module.exports = { bytesToMegabytes };
+module.exports = { bytesToMegabytes, retrieveImage };
+

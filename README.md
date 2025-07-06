@@ -6,7 +6,6 @@ To do:
  - add fetch function in ./utils to use for handleDownload
     *Cloudify obj has the properties we may need, refer to cloudify Docs
  - add size limit to uploads
- - check file types that can be uploaded on cloudify
  - add a loader wheel
  - add error handling to buttons and forms, etc.
  - design (touch up design responsiveness)

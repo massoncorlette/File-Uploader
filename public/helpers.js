@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let addFileModal = document.getElementById("fileModal");
     let addFolderModal = document.getElementById("folderModal");
     let trashModal = document.getElementById("deleteModal");
+    let downloadModal = document.getElementById("downloadModal");
 
     toggleButtons.forEach(button => {
       button.addEventListener("click", function() {
@@ -20,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
           addFolderModal.style.display = "block";
         } else if (this.id === "deleteBtn") {
           trashModal.style.display = "block";
+        } else if (this.id === "downloadBtn") {
+          downloadModal.style.display = "block";
         }
       });
     });

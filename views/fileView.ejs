@@ -9,6 +9,18 @@
 
   <div id="mainContainerAlt">
 
+  <div id="downloadModal" class="homeModal" style="display: none;">
+    <div>
+      <h2>Download File?</h2>
+
+      <form action="/home/download/<%= file.fileName %>" method="post">
+        <button type="submit" >Download</button>
+      </form>
+      <button class="addFileModal">Close</button>
+    </div>
+  </div>
+
+
   <% console.log(file) %>
     <div>
       <div>
