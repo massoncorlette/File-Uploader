@@ -3,7 +3,6 @@ Personal storage service, introduction to Prisma using Express and authenticatio
 
 To do:
  - Finish all CRUD functionality for files and folders
- - Add confimration module upon deleting all files on given views
  - add fetch function in ./utils to use for handleDownload
     *Cloudify obj has the properties we may need, refer to cloudify Docs
  - add size limit to uploads

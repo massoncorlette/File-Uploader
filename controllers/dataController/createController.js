@@ -18,7 +18,12 @@ async function handleUploadFile(req, res, next) {
     const cloudFileObj = await getCloudinaryObj(filePath);
 
     const date = new Date().toISOString().split('T')[0]; 
-    const byteSize = bytesToMegabytes(cloudFileObj.size);
+    const byteSize = Math.round(bytesToMegabytes(cloudFileObj.size));
+
+    if (byteSize >= 2) {
+      throw new Error('Max upload size of 10MB Exceeded');
+    }
+
     let folderID = null;
 
     if (req.params.folderID) {

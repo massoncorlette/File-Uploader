@@ -91,14 +91,24 @@
     <div id="deleteModal" class="homeModal" style="display: none;">
       <div>
         <h2>Delete Files</h2>
-  
-        <form action="/home/delete" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label>Delete all Files?</label>
-          </div>
-          <button type="submit">Delete</button>
-        </form>
-        <button class="addFileModal">Close</button>
+
+        <% if (req.params.folderID == null) { %>
+          <form action="/home/delete" method="post" >
+            <div class="form-group">
+              <label>Delete <b>all</b> Files?</label>
+            </div>
+            <button type="submit">Delete</button>
+          </form>
+          <button class="addFileModal">Close</button>
+          <% } else { %>
+          <form action="/home/delete/<%=req.params.folderID%>" method="post">
+            <div class="form-group">
+              <label>Delete <b>all</b> Files in <i> <%= folderInfo.name %> </i> ?</label>
+            </div>
+            <button type="submit">Delete</button>
+          </form>
+          <button class="addFileModal">Close</button>
+          <% } %>
       </div>
     </div>  
   </div>

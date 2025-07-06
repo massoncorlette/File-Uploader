@@ -2,6 +2,7 @@ const express = require("express");
 const { Router } = require("express");
 const { displayHome, displayFolderView } = require("../controllers/viewController");
 const { handleCreateFolder, handleUploadFile } = require("../controllers/dataController/createController");
+const { deleteFiles, deleteFile } = require("../controllers/dataController/deleteController");
 const { validateCreateFolder } = require("../controllers/validation");
 
 const multer  = require('multer');
@@ -30,6 +31,14 @@ homeRouter.post('/create', validateCreateFolder(), handleCreateFolder);
 homeRouter.post('/upload', upload.single('uploaded_file'), handleUploadFile);
 
 homeRouter.post('/upload/:folderID', upload.single('uploaded_file'), handleUploadFile);
+
+homeRouter.post('/delete', (req, res, next) => {
+  return deleteFiles(req, res, next);
+});
+
+homeRouter.post('/delete/:folderID', (req, res, next) => {
+  return deleteFiles(req, res, next);
+});
 
 homeRouter.get("/folder/:folderID", (req, res, next) => {
 
