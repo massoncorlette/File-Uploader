@@ -34,9 +34,28 @@ a {
   align-items: center;
 }
 
-#logoutImg, .optionsIcons {
+#logoutImg {
   width:32px;
   height:32px;
+}
+
+.sidebarOptionsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sidebarRowHeight {
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-around;
+}
+
+.optionsIcons {
+  width: 20px;
+  height: 20px;
 }
 
 #logoutImg:hover {
@@ -49,36 +68,48 @@ a {
 }
 
 #mainContainer {
-  flex: 8;
+  flex: 12;
 }
 
 #mainContainerAlt {
-  flex: 8;
+  flex: 12;
   display: flex;
 }
 
 #sidebarContainer {
   flex: 1;
+  
+}
+
+.filefoldersContainer {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+}
+
+.fileTrash {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 /* tablet */
 @media (max-width: 62.5em) {
-  #mainContainer, #mainContainerAlt {
-    flex: 4;
-  }
+
+
 }
 
 /* mobile */
 @media (max-width: 45em) {
   #homeContainer {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   #sidebarContainer {
+  flex: 0;
+  
+}
+
+  #sidebarRowHeight {
+    display: flex;
     flex-direction: row;
   }
 }

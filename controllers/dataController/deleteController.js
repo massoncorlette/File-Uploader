@@ -4,10 +4,14 @@ const { prisma } = require('../viewController');
 
 async function deleteFiles(req, res, next) {
 
-  const folderID = req.params.folderID;
   // deletes folder along with files
   try {
-    if (folderID !== null || undefined) {
+   const id =  req.params.folderID;
+
+    if (id !== undefined) {
+
+    const folderID = Number(id);
+
       await prisma.files.deleteMany({
         where: {
           folderID: folderID,
