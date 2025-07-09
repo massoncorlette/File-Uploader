@@ -36,7 +36,7 @@ homeRouter.post('/delete-all', (req, res, next) => {
   return deleteFiles(req, res, next);
 });
 
-homeRouter.post('/delete', (req, res, next) => {
+homeRouter.post('/delete/:fileID', (req, res, next) => {
   return deleteFile(req, res, next);
 });
 
@@ -44,7 +44,7 @@ homeRouter.post('/delete-all/:folderID', (req, res, next) => {
   return deleteFiles(req, res, next);
 });
 
-homeRouter.post('/delete/:folderID', (req, res, next) => {
+homeRouter.post('/delete/:folderID/:fileID', (req, res, next) => {
   return deleteFile(req, res, next);
 });
 

@@ -36,6 +36,8 @@ async function deleteFiles(req, res, next) {
 
 async function deleteFile(req, res, next) {
 
+  const id = Number(req.params.fileID);
+
   try {
     await prisma.files.delete({
       where: {

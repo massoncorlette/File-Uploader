@@ -14,11 +14,16 @@ async function handleUploadFile(req, res, next) {
 
   const filePath = req.file.path;
 
+  console.log(req.file);
+
   try {
     const cloudFileObj = await getCloudinaryObj(filePath);
     console.log(cloudFileObj);
 
-    const date = new Date().toISOString().split('T')[0]; 
+    const now = new Date();
+    // ( 1/1/25 Format Formula Conversion)
+    const date = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear() % 100}`;
+
     const byteSize = Math.round(bytesToMegabytes(cloudFileObj.size));
 
     if (byteSize >= 2) {
@@ -35,7 +40,8 @@ async function handleUploadFile(req, res, next) {
       data: {
         createdAt: date,
         cloudUrl: cloudFileObj.url,
-        fileName: cloudFileObj.fileName,
+        fileName: req.file.originalname,
+        fileType: req.file.mimetype,
         size: byteSize,
         folderID: folderID,
         authorId: req.user.id

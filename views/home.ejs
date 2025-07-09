@@ -8,36 +8,15 @@
   <%- include('partials/sidebar.ejs') %>
 
   <div id="mainContainer">
-        <div id="deleteModal" class="homeModal" style="display: none;">
+    <div id="welcomeMsg">Welcome back, <%= currentUser.fname %></div>
+
+    <% if (folders.length !== 0) { %>
+
       <div>
-        <h2>Delete Files</h2>
-
-        <% if (req.params.folderID == null) { %>
-          <form action="/home/delete-all" method="post" >
-            <div class="form-group">
-              <label>Delete <b>all</b> Files?</label>
-            </div>
-            <button type="submit">Delete</button>
-          </form>
-          <button class="addFileModal">Close</button>
-          <% } else { %>
-          <form action="/home/delete-all/<%=req.params.folderID%>" method="post">
-            <div class="form-group">
-              <label>Delete <b>all</b> Files in <i> <%= folderInfo.name %> </i> ?</label>
-            </div>
-            <button type="submit">Delete</button>
-          </form>
-          <button class="addFileModal">Close</button>
-          <% } %>
+        All Folders
       </div>
-    </div> 
-    
-    <h1>WELCOME BACK <%= currentUser.fname %></h1>
+      
 
-    <% if (folders !== null) { %>
-
-    
-      <h3>Folder Storages: </h3>
       <% folders.forEach((folder) => { %>
       
         <div class="filefoldersContainer">
@@ -50,6 +29,7 @@
           </a>
         </div>
       <% }) %>
+    <% } %>
       <div id="folderModal" class="homeModal"  style="display: none;">
         <div>
           <h2>Add A Folder</h2>
@@ -62,41 +42,7 @@
           <button class="addFileModal">Close</button>
         </div>
       </div>  
-    <% } %>
-    <% if (req.params.folderID == null) { %>
-    <h2>All Uploaded Files:</h2>
 
-    <% } else { %>
-    <h2> <i> <%= folderInfo.name %> </i> Uploaded Files</h2>
-    <% } %>
-
-    <% if (files !== null) { %> 
-
-      <% files.forEach((file) => { %>
-    
-        <div class="filefoldersContainer">
-          <div class="fileLinkContainer">
-            <a href="/filedetails/<%= file.id %>">
-              <div class="fileCells" >
-                <div>
-                  <%= file.fileName %>
-                </div>
-                <div>
-                  <%= file.createdAt%>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="fileTrash">
-            <button type="button" class="addFileModal" id="deleteBtn">
-              <img src="/icons/trash.svg" class="trashIcons">
-            </button>
-          </div>
-        </div>
-
-      <% }) %>
-    <% } %>
     <div id="fileModal" class="homeModal" style="display: none;">
       <div>
         <% if (req.params.folderID == null) { %>
@@ -119,7 +65,82 @@
         </form>
         <button class="addFileModal">Close</button>
       </div>
-    </div> 
+    </div>
+
+    <div id="deleteModal" class="homeModal" style="display: none;">
+      <div>
+        <h2>Delete Files</h2>
+
+        <% if (req.params.folderID == null) { %>
+          <form action="/home/delete-all" method="post" >
+            <div class="form-group">
+              <label>Delete <b>all</b> Files?</label>
+            </div>
+            <button type="submit">Delete</button>
+          </form>
+          <button class="addFileModal">Close</button>
+          <% } else { %>
+          <form action="/home/delete-all/<%=req.params.folderID%>" method="post">
+            <div class="form-group">
+              <label>Delete <b>all</b> Files in <i> <%= folderInfo.name %> </i> ?</label>
+            </div>
+            <button type="submit">Delete</button>
+          </form>
+          <button class="addFileModal">Close</button>
+          <% } %>
+      </div>
+    </div>  
+
+
+    <% if (req.params.folderID == null) { %>
+    <div>
+      All Uploaded Files
+    </div>
+
+    <% } else { %>
+    <h2> <i> <%= folderInfo.name %> </i> Uploaded Files</h2>
+    <% } %>
+
+
+
+    <% if (files !== null) { %> 
+
+      <% files.forEach((file) => { %>
+    
+        <div class="filefoldersContainer">
+          <a href="/filedetails/<%= file.id %>">
+            <div class="fileCells" >
+              <div id="fileDate">
+                <%= file.createdAt%>
+              </div>
+              <div id="fileName">
+                <%= file.fileName %>
+              </div>
+              <div id="fileSize">
+                <%= file.size %> MBs
+              </div>
+            </div>
+          </a>
+          <% if (req.params.folderID == null) { %>
+          <div class="fileTrash">
+            <form action="/home/delete/<%= file.id %>" method="post">
+              <button type="submit">
+                <img src="icons/trash.svg" class="trashIcons">
+              </button>
+            </form>
+          </div>
+          <% } else { %>
+          <div class="fileTrash">
+            <form action="/home/delete/<%=req.params.folderID%>/<%= file.id %>" method="post">
+              <button type="submit">
+                <img src="icons/trash.svg" class="trashIcons">
+              </button>
+            </form>
+          </div>
+          <% } %>
+        </div>
+      <% }) %>
+    <% } %>
   </div>
 </div>
 <script src="/helpers.js"></script>

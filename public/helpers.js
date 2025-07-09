@@ -23,11 +23,29 @@ document.addEventListener("DOMContentLoaded", () => {
           trashModal.style.display = "block";
         } else if (this.id === "downloadBtn") {
           downloadModal.style.display = "block";
+        } else if (this.id === "fileDeleteBtn") {
+          downloadModal.style.display = "block";
         }
       });
     });
   }
 
+  function styleMessages() {
+    let toggleRowsColors = false;
+
+    const fieldsDivs = document.querySelectorAll(".filefoldersContainer");
+
+    fieldsDivs.forEach((message) => {
+      if (toggleRowsColors) {
+        message.classList.add("light");
+        toggleRowsColors = false;
+      } else {
+        message.classList.add("dark");
+        toggleRowsColors = true;
+      }
+    });
+  };
   handleModal();
+  styleMessages();
   
 });
