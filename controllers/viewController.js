@@ -82,10 +82,10 @@ async function displayFileView(req, res, next) {
 
   const fileID = parseInt(req.params.fileID);
   const file = await getFileDetails(fileID);
-  const foldername = null;
+  let foldername = null;
 
   if (file.folderID !== null) {
-    const folder = await getFolderInfo(file.folderID); 
+    let folder = await getFolderInfo(file.folderID); 
     foldername = folder.name;
   };
 

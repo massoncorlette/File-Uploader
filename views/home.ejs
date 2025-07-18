@@ -10,25 +10,27 @@
   <div id="mainContainer">
     <div id="welcomeMsg">Welcome back, <%= currentUser.fname %></div>
 
-    <% if (folders.length !== 0) { %>
+    <% if (folders !== null) { %> 
+      <% if (folders.length !== 0) { %>
 
-      <div>
-        All Folders
-      </div>
-      
-
-      <% folders.forEach((folder) => { %>
-      
-        <div class="filefoldersContainer">
-          <a href="/home/folder/<%= folder.id %>">
-            <div class="fileCells">
-              <div>
-                <%= folder.name %>
-              </div>
-            </div>
-          </a>
+        <div>
+          All Folders
         </div>
-      <% }) %>
+        
+
+        <% folders.forEach((folder) => { %>
+        
+          <div class="filefoldersContainer">
+            <a href="/home/folder/<%= folder.id %>">
+              <div class="fileCells">
+                <div>
+                  <%= folder.name %>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% }) %>
+      <% } %>
     <% } %>
       <div id="folderModal" class="homeModal"  style="display: none;">
         <div>

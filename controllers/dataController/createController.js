@@ -26,7 +26,9 @@ async function handleUploadFile(req, res, next) {
 
     const byteSize = Math.round(bytesToMegabytes(cloudFileObj.size));
 
-    if (byteSize >= 2) {
+    console.log(byteSize, "byte");
+
+    if (byteSize >= 10) {
       throw new Error('Max upload size of 10MB Exceeded');
     }
 

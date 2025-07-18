@@ -1,5 +1,5 @@
 * {
-  border: solid rgb(253, 63, 63) 1px;
+  border: solid rgba(253, 63, 63, 0.945) 1px;
 }
 
 body {
@@ -51,7 +51,40 @@ a {
   width: 40px;
 }
 
+#submitLogin, #submitSignup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
 
+#submitLogin button, #submitSignup button {
+  padding: 2%;
+  background-color: var(--light-blue-shade);
+}
+
+#loginContainer, #signupContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#loginContainer form, #signupContainer form {
+ width: 60%;
+}
+
+.formRows {
+  margin: 1%;
+}
+
+.formRows input {
+  width: 100%;
+  padding: 3%;
+  font-size: 1.5rem;
+  background-color: var(--primary-color-alt);
+}
 
 #logoTitle {
   font-weight: 700;
@@ -124,7 +157,29 @@ a {
 #mainContainerAlt {
   flex: 12;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+#fileInfoContainer {
+  height: 60%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fileInfoRows {
+  font-size: 1.5rem;
+  margin: 2%;
+}
+
+#folderInfoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 
 #sidebarContainer {
   flex: 1;
@@ -181,6 +236,18 @@ a {
 /* tablet */
 @media (max-width: 62.5em) {
 
+  .formRows input {
+
+    font-size: 1rem;
+  }
+
+  #loginContainer form, #signupContainer form {
+    width: 80%;
+   }
+   
+   #mainContainerAlt {
+    justify-content: flex-start;
+  }
 
 }
 
@@ -208,7 +275,7 @@ a {
 
 @media (max-width:30em) {
   * {
-    font-size: 70%;
+    font-size: 90%;
   }
 
   .optionsIcons, .trashIcons {

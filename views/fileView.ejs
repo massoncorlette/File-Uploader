@@ -22,32 +22,40 @@
 
 
   <% console.log(file) %>
-    <div>
-      <div>
-        <%= file.fileName %>
+    <h1>All File Information</h1>
+    <div id="fileInfoContainer">
+      <div id="folderInfoContainer">
+        <div class="fileInfoRows">
+          Current File Name: 
+          <%= file.fileName %>
+        </div>
+        <div class="fileInfoRows">
+          Storage: 
+        <% if (foldername !== null) { %>
+            Stored In <%= foldername %>
+        <% } else { %> 
+            Not stored in Folder
+        <% } %>
+        </div>
       </div>
-      <% if (foldername !== null) { %>
-        <div>
-          Stored In <%= foldername %>
-        </div>
-      <% } else { %> 
-        <div>
-          Not stored in Folder
-        </div>
-      <% } %>
-    </div>
-
-    <div>
+    <div class="fileInfoRows">
+      Uploaded On: 
       <%= file.createdAt %>
     </div>
-    <div>
+    <div class="fileInfoRows">
+      Original File Name: 
       <%= file.fileName %>
     </div>
-    <div>
+    <div class="fileInfoRows">
+      File Type: 
       <%= file.fileType %>
     </div>
-
+    <div class="fileInfoRows">
+      File Size: 
+      <%= file.size %> MBs
+    </div>
   </div>
+ </div>
 
 
 
