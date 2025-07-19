@@ -7,7 +7,9 @@ const { validationResult } = require("express-validator");
 
 const { getCloudinaryObj } = require('../../config/cloud');
 
-const { bytesToMegabytes } = require('../../utils');
+const { retrieveImage, bytesToMegabytes } = require('../../utils');
+
+const { getFileDetails } = require('../viewController');
 
 
 async function handleUploadFile(req, res, next) {
@@ -43,6 +45,7 @@ async function handleUploadFile(req, res, next) {
         createdAt: date,
         cloudUrl: cloudFileObj.url,
         fileName: req.file.originalname,
+        customName: req.file.originalname,
         fileType: req.file.mimetype,
         size: byteSize,
         folderID: folderID,
@@ -55,6 +58,7 @@ async function handleUploadFile(req, res, next) {
     next(error);
   }
 };
+
 
 async function handleCreateUser(req, res, next) {
   const errors = validationResult(req);

@@ -70,6 +70,13 @@ app.get("/filedetails/:fileID", (req, res, next) => {
 
 });
 
+const { handleEditFile } = require('./controllers/dataController/updateController');
+
+app.post("/editfile/:fileID", (req, res, next) => {
+
+  return handleEditFile(req, res, next);
+});
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

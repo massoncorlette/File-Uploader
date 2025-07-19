@@ -48,15 +48,9 @@ homeRouter.post('/delete/:folderID/:fileID', (req, res, next) => {
   return deleteFile(req, res, next);
 });
 
-
 homeRouter.get("/folder/:folderID", (req, res, next) => {
 
   return displayFolderView(req, res, next);
-});
-
-homeRouter.get("/download/:file-name", (req, res, next) => {
-
-  return handleDownload(req, res, next);
 });
 
 

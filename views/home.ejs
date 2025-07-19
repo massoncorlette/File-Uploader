@@ -32,18 +32,18 @@
         <% }) %>
       <% } %>
     <% } %>
-      <div id="folderModal" class="homeModal"  style="display: none;">
-        <div>
-          <h2>Add A Folder</h2>
-    
-          <form action="/home/create" method="post">
-            <label>Add a Folder Name</label>
-            <input  name="foldername" type="text"/>
-            <button type="submit" >Create</button>
-          </form>
-          <button class="addFileModal">Close</button>
-        </div>
-      </div>  
+    <div id="folderModal" class="homeModal"  style="display: none;">
+      <div>
+        <h2>Add A Folder</h2>
+  
+        <form action="/home/create" method="post">
+          <label>Add a Folder Name</label>
+          <input  name="foldername" type="text"/>
+          <button type="submit" >Create</button>
+        </form>
+        <button class="addFileModal">Close</button>
+      </div>
+    </div>  
 
     <div id="fileModal" class="homeModal" style="display: none;">
       <div>
@@ -116,7 +116,7 @@
                 <%= file.createdAt%>
               </div>
               <div id="fileName">
-                <%= file.fileName %>
+                <%= file.customName %>
               </div>
               <div id="fileSize">
                 <%= file.size %> MBs
@@ -131,6 +131,7 @@
               </button>
             </form>
           </div>
+
           <% } else { %>
           <div class="fileTrash">
             <form action="/home/delete/<%=req.params.folderID%>/<%= file.id %>" method="post">

@@ -8,9 +8,11 @@
     </div>
 
     <div class="sidebarOptionsContainer">
-      <button type="button" class="addFileModal" id="downloadBtn">
-        <img src="/icons/Download.svg" class="optionsIcons">
-      </button>
+      <a href="<%= file.cloudUrl %>&fl_attachment=true" download="<%= file.fileName %>">
+        <button type="button" class="addFileModal" id="downloadBtn">
+          <img src="/icons/Download.svg" class="optionsIcons">
+        </button>
+      </a>
     </div>
     <div class="sidebarOptionsContainer">
         <button type="button" class="addFileModal" id="deleteBtn">

@@ -9,16 +9,17 @@
 
   <div id="mainContainerAlt">
 
-  <div id="downloadModal" class="homeModal" style="display: none;">
-    <div>
-      <h2>Download File?</h2>
+    <div id="editModal" class="homeModal"  style="display: none;">
+      <div>
+        <form action="/editfile/<%=file.id %>" method="post">
+          <label>Edit File Name</label>
+          <input  name="filename" value="<%=file.customName%>" type="text"/>
+          <button type="submit" >Edit</button>
+        </form>
+        <button class="addFileModal">Close</button>
+      </div>
+    </div>  
 
-      <form action="/home/download/<%= file.fileName %>" method="post">
-        <button type="submit" >Download</button>
-      </form>
-      <button class="addFileModal">Close</button>
-    </div>
-  </div>
 
 
   <% console.log(file) %>
@@ -27,7 +28,7 @@
       <div id="folderInfoContainer">
         <div class="fileInfoRows">
           Current File Name: 
-          <%= file.fileName %>
+          <%= file.customName %>
         </div>
         <div class="fileInfoRows">
           Storage: 
@@ -54,14 +55,23 @@
       File Size: 
       <%= file.size %> MBs
     </div>
+    <div class="fileInfoRows">
+      <div id="downloadFileBtn">
+        <a href="<%= file.cloudUrl %>&fl_attachment=true" download="<%= file.customName %>">
+          <button id="downloadBtnFileView" type="button" class="addFileModal">
+            Download File
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="fileInfoRows">
+      <div id="editFileBtn">
+        <button  type="button" id="fileEditBtn" class="addFileModal">
+          Edit File
+        </button>
+      </div>
+    </div>
   </div>
  </div>
-
-
-
-
-
-
-
-
 </div>
+<script src="/helpers.js"></script>

@@ -98,5 +98,6 @@ module.exports = {
   displayLogin,
   displayHome,
   displayFolderView,
-  displayFileView
+  displayFileView, 
+  getFileDetails
 };

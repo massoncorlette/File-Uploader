@@ -36,6 +36,7 @@ model Files {
   createdAt String
   cloudUrl  String
   fileName  String
+  customName String
   fileType  String?
   size      Int
   folder    Folders?  @relation(fields: [folderID], references: [id])
