@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 const { validationResult } = require("express-validator");
 
-const { getCloudinaryObj } = require('../../config/cloud');
+const { getCloudinaryObj, downloadCloudinaryImg } = require('../../config/cloud');
 
 const { retrieveImage, bytesToMegabytes } = require('../../utils');
 
@@ -42,6 +42,7 @@ async function handleUploadFile(req, res, next) {
 
     await prisma.files.create({
       data: {
+        publicid: cloudFileObj.publicid,
         createdAt: date,
         cloudUrl: cloudFileObj.url,
         fileName: req.file.originalname,
@@ -57,6 +58,14 @@ async function handleUploadFile(req, res, next) {
     console.error(error);
     next(error);
   }
+};
+
+async function handleDownloadFile(req, res, next) {
+
+  const fileInfo = await getFileDetails(parseInt(req.params.fileID));
+
+  return downloadCloudinaryImg(fileInfo);
+
 };
 
 
@@ -112,4 +121,4 @@ async function handleCreateFolder(req, res, next) {
 };
 
 
-module.exports = { handleCreateUser, handleUploadFile, handleCreateFolder };
+module.exports = { handleCreateUser, handleUploadFile, handleDownloadFile, handleCreateFolder };

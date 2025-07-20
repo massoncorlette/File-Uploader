@@ -77,6 +77,13 @@ app.post("/editfile/:fileID", (req, res, next) => {
   return handleEditFile(req, res, next);
 });
 
+const { handleDownloadFile } = require('./controllers/dataController/createController');
+
+app.get("/download/:fileID", (req, res, next) => {
+
+  return handleDownloadFile(req, res, next);
+});
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

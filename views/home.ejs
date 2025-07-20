@@ -10,6 +10,19 @@
   <div id="mainContainer">
     <div id="welcomeMsg">Welcome back, <%= currentUser.fname %></div>
 
+    <div id="folderModal" class="homeModal"  style="display: none;">
+      <div class="modalContainer">  
+        <form class="modalForm" action="/home/create" method="post">
+          <label>Add a Folder Name</label>
+          <div class="form-group">
+            <input  name="foldername" type="text"/>
+            <button type="submit" >Create</button>
+          </div>
+        </form>
+        <button class="addFileModal">Close</button>
+      </div>
+    </div>  
+
     <% if (folders !== null) { %> 
       <% if (folders.length !== 0) { %>
 
@@ -32,37 +45,26 @@
         <% }) %>
       <% } %>
     <% } %>
-    <div id="folderModal" class="homeModal"  style="display: none;">
-      <div>
-        <h2>Add A Folder</h2>
-  
-        <form action="/home/create" method="post">
-          <label>Add a Folder Name</label>
-          <input  name="foldername" type="text"/>
-          <button type="submit" >Create</button>
-        </form>
-        <button class="addFileModal">Close</button>
-      </div>
-    </div>  
+
 
     <div id="fileModal" class="homeModal" style="display: none;">
-      <div>
+      <div class="modalContainer">
         <% if (req.params.folderID == null) { %>
-          <h2>Add a File</h2>
+          <label>Add a File</label>
       
           <% } else { %>
-          <h2>Add a File to <i> <%= folderInfo.name %> </i></h2>
+          <label>Add a File to <i> <%= folderInfo.name %> </i></label>
           <% } %>
 
           <% if (req.params.folderID == null) { %>
-              <form action="/home/upload" method="post" enctype="multipart/form-data">        
+              <form class="modalForm" action="/home/upload" method="post" enctype="multipart/form-data">        
             <% } else { %>
-              <form action="/home/upload/<%=req.params.folderID%>" method="post" enctype="multipart/form-data">
+              <form class="modalForm" action="/home/upload/<%=req.params.folderID%>" method="post" enctype="multipart/form-data">
             <% } %>
 
           <div class="form-group">
             <input type="file" class="form-control-file" name="uploaded_file">
-            <input type="submit" value="Upload" class="btn btn-default">
+            <button type="submit" >Upload</button>
           </div>
         </form>
         <button class="addFileModal">Close</button>
@@ -70,23 +72,21 @@
     </div>
 
     <div id="deleteModal" class="homeModal" style="display: none;">
-      <div>
-        <h2>Delete Files</h2>
-
+      <div class="modalContainer">
         <% if (req.params.folderID == null) { %>
-          <form action="/home/delete-all" method="post" >
+          <form class="modalForm" action="/home/delete-all" method="post" >
             <div class="form-group">
               <label>Delete <b>all</b> Files?</label>
+              <button type="submit">Delete</button>
             </div>
-            <button type="submit">Delete</button>
           </form>
           <button class="addFileModal">Close</button>
           <% } else { %>
           <form action="/home/delete-all/<%=req.params.folderID%>" method="post">
             <div class="form-group">
               <label>Delete <b>all</b> Files in <i> <%= folderInfo.name %> </i> ?</label>
+              <button type="submit">Delete</button>
             </div>
-            <button type="submit">Delete</button>
           </form>
           <button class="addFileModal">Close</button>
           <% } %>

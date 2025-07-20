@@ -1,5 +1,8 @@
 const cloudinary = require('cloudinary').v2;
-
+const { format }  = require("@cloudinary/url-gen/actions/delivery");
+const { auto } = require("@cloudinary/url-gen/qualifiers/format");
+const { attachment } = require("@cloudinary/url-gen/qualifiers/flag");
+const { CloudinaryImage } = require('@cloudinary/url-gen');
 
 cloudinary.config({
   cloud_name: 'dlcev9lgh',
@@ -8,11 +11,17 @@ cloudinary.config({
 
 });
 
-async function getCloudinaryObj(path) {
+async function getCloudinaryObj(path, download) {
+  if (download === true) {
+
+  } else {
+    
+  }
   const results = await cloudinary.uploader.upload(path);
+  const publicid = results.public_id;
   const fileName = results.original_filename;
   const size = results.bytes
-  const url = cloudinary.url(results.public_id, {
+  const url = cloudinary.url(publicid, {
     transformation: [
       {
         quality: 'auto',
@@ -27,10 +36,21 @@ async function getCloudinaryObj(path) {
     ]
   })
   return {
+    publicid,
     url,
     fileName,
     size
   };
 };
 
-module.exports = { getCloudinaryObj };
+
+async function downloadCloudinaryImg(fileInfo) {
+  const image = new CloudinaryImage(fileInfo.publicid)
+  .delivery(format(auto()))
+  .addFlag(attachment(fileInfo.fileName));
+
+  console.log(image);
+
+};
+
+module.exports = { getCloudinaryObj, downloadCloudinaryImg };

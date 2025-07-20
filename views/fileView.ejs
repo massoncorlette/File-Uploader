@@ -10,8 +10,8 @@
   <div id="mainContainerAlt">
 
     <div id="editModal" class="homeModal"  style="display: none;">
-      <div>
-        <form action="/editfile/<%=file.id %>" method="post">
+      <div class="modalContainer">
+        <form class="modalForm" action="/editfile/<%=file.id %>" method="post">
           <label>Edit File Name</label>
           <input  name="filename" value="<%=file.customName%>" type="text"/>
           <button type="submit" >Edit</button>
@@ -57,11 +57,11 @@
     </div>
     <div class="fileInfoRows">
       <div id="downloadFileBtn">
-        <a href="<%= file.cloudUrl %>&fl_attachment=true" download="<%= file.customName %>">
-          <button id="downloadBtnFileView" type="button" class="addFileModal">
+        <form action="/download/<%= file.id %>" method="get">
+          <button id="downloadBtnFileView" type="submit" class="addFileModal">
             Download File
           </button>
-        </a>
+        </form>
       </div>
     </div>
     <div class="fileInfoRows">
