@@ -206,7 +206,7 @@ a {
   margin: 0%;
 }
 
-#downloadFileBtn, #editFileBtn, #editFileBtn form, #downloadFileBtn a {
+#downloadFileBtn, #editFileBtn, #editFileBtn form, #downloadFileBtn a, #downloadFileBtn form {
   flex: 1;
   display: flex;
 }

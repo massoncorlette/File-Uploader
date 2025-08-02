@@ -64,7 +64,9 @@ async function handleDownloadFile(req, res, next) {
 
   const fileInfo = await getFileDetails(parseInt(req.params.fileID));
 
-  return downloadCloudinaryImg(fileInfo);
+  downloadCloudinaryImg(fileInfo);
+
+
 
 };
 

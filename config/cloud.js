@@ -12,11 +12,7 @@ cloudinary.config({
 });
 
 async function getCloudinaryObj(path, download) {
-  if (download === true) {
 
-  } else {
-    
-  }
   const results = await cloudinary.uploader.upload(path);
   const publicid = results.public_id;
   const fileName = results.original_filename;
@@ -49,7 +45,7 @@ async function downloadCloudinaryImg(fileInfo) {
   .delivery(format(auto()))
   .addFlag(attachment(fileInfo.fileName));
 
-  console.log(image);
+  return image;
 
 };
 
