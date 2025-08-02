@@ -57,7 +57,7 @@
     </div>
     <div class="fileInfoRows">
       <div id="downloadFileBtn">
-        <form action="/download/<%= file.id %>" method="get">
+        <a href= "<%= file.cloudUrl %>" method="get">
           <button id="downloadBtnFileView" type="submit" class="addFileModal">
             Download File
           </button>

@@ -63,7 +63,7 @@ async function displayHome(req, res, next) {
   const files = await prisma.files.findMany();
   const folders = await prisma.folders.findMany();
 
-  res.render("home", {files:files, folders:folders, req:req});
+  res.render("home", {files:files, folders:folders, req:req, error:null});
 
 };
 
@@ -75,7 +75,7 @@ async function displayFolderView(req, res, next) {
   const files = await getFilesByFolder(folderID);
   const folderInfo = await getFolderInfo(folderID);
 
-  res.render("home", {files:files, folders:folders, req:req, folderInfo:folderInfo});
+  res.render("home", {files:files, folders:folders, req:req, folderInfo:folderInfo, error:null});
 };
 
 async function displayFileView(req, res, next) {

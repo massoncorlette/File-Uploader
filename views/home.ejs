@@ -7,6 +7,11 @@
 
   <%- include('partials/sidebar.ejs') %>
 
+  <% if (error !== null) { %> 
+    <div id="errorContainer">
+      <%= error %>
+    </div>
+  <% } %>
   <div id="mainContainer">
     <div id="welcomeMsg">Welcome back, <%= currentUser.fname %></div>
 

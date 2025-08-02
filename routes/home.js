@@ -53,5 +53,14 @@ homeRouter.get("/folder/:folderID", (req, res, next) => {
   return displayFolderView(req, res, next);
 });
 
+//error middleware from next calls
+homeRouter.use((err, req, res, next) => {
+  console.error(err);
+  const message = err.message || "Something went wrong";
+
+  res.render("error", { error: message });
+});
+
+
 
 module.exports = homeRouter;

@@ -14,10 +14,16 @@ const { getFileDetails } = require('../viewController');
 
 async function handleUploadFile(req, res, next) {
 
+  if (req.file == undefined) {
+    const err = new Error("No attached file");
+    err.status = 400;
+    return next(err);
+  }
+
   const filePath = req.file.path;
 
   console.log(req.file);
-
+  
   try {
     const cloudFileObj = await getCloudinaryObj(filePath);
     console.log(cloudFileObj);
@@ -26,13 +32,10 @@ async function handleUploadFile(req, res, next) {
     // ( 1/1/25 Format Formula Conversion)
     const date = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear() % 100}`;
 
+
     const byteSize = Math.round(bytesToMegabytes(cloudFileObj.size));
 
     console.log(byteSize, "byte");
-
-    if (byteSize >= 10) {
-      throw new Error('Max upload size of 10MB Exceeded');
-    }
 
     let folderID = null;
 
@@ -56,19 +59,11 @@ async function handleUploadFile(req, res, next) {
     res.redirect("/home");
   } catch (error) {
     console.error(error);
+    // goes to error middleware
     next(error);
   }
 };
 
-async function handleDownloadFile(req, res, next) {
-
-  const fileInfo = await getFileDetails(parseInt(req.params.fileID));
-
-  downloadCloudinaryImg(fileInfo);
-
-
-
-};
 
 
 async function handleCreateUser(req, res, next) {
@@ -123,4 +118,4 @@ async function handleCreateFolder(req, res, next) {
 };
 
 
-module.exports = { handleCreateUser, handleUploadFile, handleDownloadFile, handleCreateFolder };
+module.exports = { handleCreateUser, handleUploadFile, handleCreateFolder };

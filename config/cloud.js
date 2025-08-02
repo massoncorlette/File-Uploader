@@ -40,13 +40,5 @@ async function getCloudinaryObj(path, download) {
 };
 
 
-async function downloadCloudinaryImg(fileInfo) {
-  const image = new CloudinaryImage(fileInfo.publicid)
-  .delivery(format(auto()))
-  .addFlag(attachment(fileInfo.fileName));
 
-  return image;
-
-};
-
-module.exports = { getCloudinaryObj, downloadCloudinaryImg };
+module.exports = { getCloudinaryObj };
